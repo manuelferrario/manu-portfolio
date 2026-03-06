@@ -1,10 +1,10 @@
 ﻿"use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { createSupabaseBrowserClient } from "@/lib/supabase";
 
-export default function LoginPage() {
+function LoginForm() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
@@ -58,3 +58,17 @@ export default function LoginPage() {
   );
 }
 
+export default function LoginPage() {
+  return (
+    <Suspense
+      fallback={
+        <section className="mx-auto max-w-lg rounded-[1.8rem] border border-white/35 bg-white/12 p-6 backdrop-blur-md sm:p-8">
+          <h1 className="display-font text-3xl font-bold text-white">Recruiter Login</h1>
+          <p className="mt-2 text-sm text-white/85">Loading...</p>
+        </section>
+      }
+    >
+      <LoginForm />
+    </Suspense>
+  );
+}
