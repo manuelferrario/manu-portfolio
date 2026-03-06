@@ -2,11 +2,15 @@
 
 const EASE_OUT: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
-export function fadeUp(reducedMotion: boolean, distance = 10, delay = 0, duration = 0.45): Variants {
+type ReducedMotionFlag = boolean | null | undefined;
+
+export function fadeUp(reducedMotion: ReducedMotionFlag, distance = 10, delay = 0, duration = 0.45): Variants {
+  const isReduced = Boolean(reducedMotion);
+
   return {
     hidden: {
       opacity: 0,
-      y: reducedMotion ? 0 : distance
+      y: isReduced ? 0 : distance
     },
     visible: {
       opacity: 1,
@@ -20,14 +24,16 @@ export function fadeUp(reducedMotion: boolean, distance = 10, delay = 0, duratio
   };
 }
 
-export function stagger(reducedMotion: boolean, staggerChildren = 0.06, delayChildren = 0): Variants {
+export function stagger(reducedMotion: ReducedMotionFlag, staggerChildren = 0.06, delayChildren = 0): Variants {
+  const isReduced = Boolean(reducedMotion);
+
   return {
     hidden: {
       opacity: 0
     },
     visible: {
       opacity: 1,
-      transition: reducedMotion
+      transition: isReduced
         ? { duration: 0.01 }
         : {
             staggerChildren,
@@ -37,12 +43,14 @@ export function stagger(reducedMotion: boolean, staggerChildren = 0.06, delayChi
   };
 }
 
-export function cardIn(reducedMotion: boolean, delay = 0): Variants {
+export function cardIn(reducedMotion: ReducedMotionFlag, delay = 0): Variants {
+  const isReduced = Boolean(reducedMotion);
+
   return {
     hidden: {
       opacity: 0,
-      y: reducedMotion ? 0 : 12,
-      scale: reducedMotion ? 1 : 0.995
+      y: isReduced ? 0 : 12,
+      scale: isReduced ? 1 : 0.995
     },
     visible: {
       opacity: 1,
@@ -57,12 +65,14 @@ export function cardIn(reducedMotion: boolean, delay = 0): Variants {
   };
 }
 
-export function chipIn(reducedMotion: boolean, delay = 0): Variants {
+export function chipIn(reducedMotion: ReducedMotionFlag, delay = 0): Variants {
+  const isReduced = Boolean(reducedMotion);
+
   return {
     hidden: {
       opacity: 0,
-      y: reducedMotion ? 0 : 6,
-      filter: reducedMotion ? "none" : "blur(4px)"
+      y: isReduced ? 0 : 6,
+      filter: isReduced ? "none" : "blur(4px)"
     },
     visible: {
       opacity: 1,
@@ -77,12 +87,14 @@ export function chipIn(reducedMotion: boolean, delay = 0): Variants {
   };
 }
 
-export function imageReveal(reducedMotion: boolean): Variants {
+export function imageReveal(reducedMotion: ReducedMotionFlag): Variants {
+  const isReduced = Boolean(reducedMotion);
+
   return {
     hidden: {
       opacity: 0,
-      filter: reducedMotion ? "none" : "blur(8px)",
-      scale: reducedMotion ? 1 : 1.01
+      filter: isReduced ? "none" : "blur(8px)",
+      scale: isReduced ? 1 : 1.01
     },
     visible: {
       opacity: 1,
@@ -95,4 +107,3 @@ export function imageReveal(reducedMotion: boolean): Variants {
     }
   };
 }
-
