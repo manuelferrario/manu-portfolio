@@ -17,12 +17,46 @@ export type BuildingContent = {
   links: Array<{ label: string; href: string }>;
 };
 
-export const profile = {
+type ProfileContent = {
+  name: string;
+  location: string;
+  phone: string;
+  email: string;
+  linkedin: string;
+  summary: string;
+  skills: string[];
+  languages: string[];
+  passions: string[];
+  education: string[];
+};
+
+export const profile: ProfileContent = {
   name: "Manuel Ferrario (Manu)",
   location: "Nunez, Buenos Aires",
   phone: "+54 11 5004-7253",
   email: "manuelferrarioM@gmail.com",
-  linkedin: "https://www.linkedin.com/in/manuel-ferrario/"
+  linkedin: "https://www.linkedin.com/in/manuel-ferrario/",
+  summary:
+    "Estudiante de Tecnologia Digital con interes en tecnologia y negocio. Experiencia en operaciones comerciales, coordinacion y produccion de contenidos.",
+  skills: [
+    "Meta Business Manager",
+    "Google Suite",
+    "Python (basico)",
+    "C (basico)",
+    "C++ (basico)",
+    "Sony Vegas Pro",
+    "OBS Studio",
+    "Canva"
+  ],
+  languages: ["Espanol (nativo)", "Ingles (profesional)"],
+  passions: ["Deportes", "Running", "Aprender nuevas habilidades"],
+  education: [
+    "Universidad Torcuato Di Tella - Lic. en Tecnologia Digital (2024-presente)",
+    "Colegio San Marcos de San Isidro - Bachiller bilingue (2016-2022)",
+    "Trinity Grade 9 (GESE)",
+    "Trinity Grade 6 (GESE) - Merit",
+    "AS Exam - Global Perspectives & Research"
+  ]
 };
 
 const defaultLinks = [
@@ -144,4 +178,3 @@ export const cityBuildings: BuildingContent[] = [
     links: defaultLinks
   }
 ];
-
